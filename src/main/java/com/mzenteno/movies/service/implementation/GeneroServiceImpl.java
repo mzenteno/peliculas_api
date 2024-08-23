@@ -3,7 +3,7 @@ package com.mzenteno.movies.service.implementation;
 import java.util.List;
 import org.springframework.stereotype.Service;
 import com.mzenteno.movies.dto.GeneroDto;
-import com.mzenteno.movies.entity.Genero;
+//import com.mzenteno.movies.entity.Genero;
 import com.mzenteno.movies.repository.GeneroRepository;
 import com.mzenteno.movies.service.GeneroService;
 
