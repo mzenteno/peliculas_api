@@ -2,7 +2,6 @@ package com.mzenteno.movies.entity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -47,7 +46,7 @@ public class Comentario implements Serializable {
   private Integer noMeGusta;
 
   @ManyToOne
-  @JoinColumn(name = "id_pelicula")
+  @JoinColumn(name = "id_pelicula", nullable = false)
   private Pelicula pelicula;
 
 }

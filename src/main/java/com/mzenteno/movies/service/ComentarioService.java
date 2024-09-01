@@ -5,8 +5,10 @@ import com.mzenteno.movies.dto.ComentarioDto;
 
 public interface ComentarioService {
   
-  List<ComentarioDto.ComentarioListDTO> findAll();
+  List<ComentarioDto.ListDTO> findAll();
 
-  List<ComentarioDto.ComentarioPeliculaListDTO> findAllByIdPelicula(Long idPelicula);
+  List<ComentarioDto.PeliculaListDTO> findAllByIdPelicula(Long idPelicula);
+
+  ComentarioDto.DTO create(ComentarioDto.CreateDTO dto);
 
 }

@@ -3,13 +3,15 @@ package com.mzenteno.movies.dto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 public class PeliculaDto {
 
   @Data
   @Builder
   @AllArgsConstructor
-  public static class PeliculaDTO {
+  @NoArgsConstructor
+  public static class DTO {
     private Long idPelicula;
     private char tipo;
     private String titulo;
@@ -24,8 +26,10 @@ public class PeliculaDto {
   @Data
   @Builder
   @AllArgsConstructor
-  public static class PeliculaEstrenoListDTO {
+  @NoArgsConstructor
+  public static class EstrenoListDTO {
     private Long idPelicula;
+    private char tipo;
     private String titulo;
     private double puntos;
     private String imagenPortada;

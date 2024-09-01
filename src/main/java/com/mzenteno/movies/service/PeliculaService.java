@@ -5,8 +5,8 @@ import com.mzenteno.movies.dto.PeliculaDto;
 
 public interface PeliculaService {
 
-  List<PeliculaDto.PeliculaEstrenoListDTO> findAllPeliculaEstreno();
+  List<PeliculaDto.EstrenoListDTO> findAllPeliculaEstreno();
 
-  PeliculaDto.PeliculaDTO findById(Long id);
+  PeliculaDto.DTO findById(Long id);
   
 }

@@ -24,21 +24,20 @@ public class PeliculaController {
   }
 
   @GetMapping("/{id}")  
-  public ResponseEntity<PeliculaDto.PeliculaDTO> findById(@PathVariable Long id) {
-    PeliculaDto.PeliculaDTO pelicula = peliculaService.findById(id);
+  public ResponseEntity<PeliculaDto.DTO> findById(@PathVariable Long id) {
+    PeliculaDto.DTO pelicula = peliculaService.findById(id);
     return ResponseEntity.ok(pelicula);
   }
 
-
   @GetMapping("/estrenos")
-  public ResponseEntity<List<PeliculaDto.PeliculaEstrenoListDTO>> finAllPeliculaEstreno() {
-    List<PeliculaDto.PeliculaEstrenoListDTO> peliculas = peliculaService.findAllPeliculaEstreno();
+  public ResponseEntity<List<PeliculaDto.EstrenoListDTO>> finAllPeliculaEstreno() {
+    List<PeliculaDto.EstrenoListDTO> peliculas = peliculaService.findAllPeliculaEstreno();
     return ResponseEntity.ok(peliculas);
   }
 
   @GetMapping("/{idPelicula}/comentarios")
-  public ResponseEntity<List<ComentarioDto.ComentarioPeliculaListDTO>> findAllComentariosByIdPelicula(@PathVariable Long idPelicula){
-    List<ComentarioDto.ComentarioPeliculaListDTO> comentarios = comentarioService.findAllByIdPelicula(idPelicula);
+  public ResponseEntity<List<ComentarioDto.PeliculaListDTO>> findAllComentariosByIdPelicula(@PathVariable Long idPelicula){
+    List<ComentarioDto.PeliculaListDTO> comentarios = comentarioService.findAllByIdPelicula(idPelicula);
     return ResponseEntity.ok(comentarios);
   }
 
