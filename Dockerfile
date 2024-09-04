@@ -1,5 +1,5 @@
 # Usar una imagen base de Java
-FROM openjdk:11-jre-slim
+FROM openjdk:22-jre-slim
 
 # Copiar el archivo .jar al contenedor
 COPY deploy/movies-0.0.1-SNAPSHOT.jar /app/mi-app.jar
