@@ -23,9 +23,9 @@ public class PeliculaController {
     this.comentarioService = comentarioService;
   }
 
-  @GetMapping("/{id}")  
-  public ResponseEntity<PeliculaDto.DTO> findById(@PathVariable Long id) {
-    PeliculaDto.DTO pelicula = peliculaService.findById(id);
+  @GetMapping("/{idPelicula}")  
+  public ResponseEntity<PeliculaDto.DTO> findById(@PathVariable Long idPelicula) {
+    PeliculaDto.DTO pelicula = peliculaService.findById(idPelicula);
     return ResponseEntity.ok(pelicula);
   }
 

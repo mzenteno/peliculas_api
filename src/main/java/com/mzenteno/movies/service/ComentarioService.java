@@ -11,4 +11,8 @@ public interface ComentarioService {
 
   ComentarioDto.DTO create(ComentarioDto.CreateDTO dto);
 
+  public ComentarioDto.DTO addMeGusta(Long idComentario);
+
+  public ComentarioDto.DTO addNoMeGusta(Long idComentario);
+  
 }

@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import com.mzenteno.movies.dto.ComentarioDto;
+import com.mzenteno.movies.dto.ComentarioDto.DTO;
 import com.mzenteno.movies.entity.Comentario;
 import com.mzenteno.movies.entity.Pelicula;
 import com.mzenteno.movies.error.exception.InternalServerErrorException;
@@ -29,10 +30,9 @@ public class ComentarioServiceImpl implements ComentarioService {
 
   @Override
   public ComentarioDto.DTO create(ComentarioDto.CreateDTO dto) {
-      Optional<Pelicula> peliculaOpt = peliculaRepository.findById(dto.getIdPelicula());
-      if (!peliculaOpt.isPresent()) {            
-        throw new ResourceNotFoundException("Película con ID: " + dto.getIdPelicula() + " no encontrada");
-      }
+    if(!peliculaRepository.existsById(dto.getIdPelicula())) {
+      throw new ResourceNotFoundException("Película con ID: " + dto.getIdPelicula() + " no encontrada");
+    }
       
     try {
       Comentario comentario = modelMapper.map(dto, Comentario.class);
@@ -58,16 +58,44 @@ public class ComentarioServiceImpl implements ComentarioService {
 
   @Override
   public List<ComentarioDto.PeliculaListDTO> findAllByIdPelicula(Long idPelicula) {
-    Optional<Pelicula> peliculaOpt = peliculaRepository.findById(idPelicula);
-    if (!peliculaOpt.isPresent()) {            
+    if(!peliculaRepository.existsById(idPelicula)) {
       throw new ResourceNotFoundException("Película con ID: " + idPelicula + " no encontrada");
     }
 
-    List<Comentario> comentarios = comentarioRepository.findByPelicula_IdPelicula(idPelicula);
-
+    List<Comentario> comentarios = comentarioRepository.findByPeliculaIdPeliculaOrderByFechaDesc(idPelicula);
     return comentarios.stream()
       .map(comentario -> modelMapper.map(comentario, ComentarioDto.PeliculaListDTO.class))
       .collect(Collectors.toList());
+  }
+
+  @Override
+  public ComentarioDto.DTO addMeGusta(Long idComentario) {
+    if (!comentarioRepository.existsById(idComentario)) {
+      throw new ResourceNotFoundException("Comentario con ID: " + idComentario + " no encontrado");
+    }
+
+    try {
+      comentarioRepository.addMeGusta(idComentario);
+      Comentario comentario = comentarioRepository.findById(idComentario).get();  
+      return modelMapper.map(comentario, ComentarioDto.DTO.class);  
+    } catch (Exception e) {
+      throw new InternalServerErrorException("Error al dar like al comentario");
+    }
+  }
+
+  @Override
+  public DTO addNoMeGusta(Long idComentario) {
+    if (!comentarioRepository.existsById(idComentario)) {
+      throw new ResourceNotFoundException("Comentario con ID: " + idComentario + " no encontrado");
+    }
+
+    try {
+      comentarioRepository.addNoMeGusta(idComentario);
+      Comentario comentario = comentarioRepository.findById(idComentario).get();  
+      return modelMapper.map(comentario, ComentarioDto.DTO.class);  
+    } catch (Exception e) {
+      throw new InternalServerErrorException("Error al dar like al comentario");
+    }
   }
 
 }
