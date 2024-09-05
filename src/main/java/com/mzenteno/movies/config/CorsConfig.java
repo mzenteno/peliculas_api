@@ -15,7 +15,7 @@ public class CorsConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")  // Permite CORS en todas las rutas
-                        .allowedOrigins("http://localhost:5173", "https://tudominio.com", "https://mzenteno.github.io")  // Permitir dominios específicos
+                        .allowedOrigins("http://localhost:5173", "https://mzenteno.github.io")  // Permitir dominios específicos
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")  // Métodos permitidos
                         .allowedHeaders("*")  // Permitir todos los headers
                         .allowCredentials(true);  // Permitir cookies/credenciales
